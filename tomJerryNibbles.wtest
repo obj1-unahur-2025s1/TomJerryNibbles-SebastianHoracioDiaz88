@@ -1,17 +1,50 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
+describe "Grupo de test de tom jerry y nibbles" {
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+  test "La velocidad máxima de tom al inicio es 10" {
+    assert.equals(10, tom.velocidadMaxima())
   }
 
-  test "test 3" {
-    assert.that(true)
+  test "tom come a jerry velocidad 14 y energia 90" {
+    tom.comer(jerry)
+    assert.equals(14, tom.velocidadMaxima())
+    assert.equals(90, tom.energia())
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "ahora corre 24mts velidad debe ser 12.8 y energia 78" {
+    tom.comer(jerry)
+    tom.correr(24)
+    assert.equals(12.8, tom.velocidadMaxima())
+    assert.equals(78, tom.energia())
   }
 
+  test "come a Jerry, corre 24 mts, come a Nibbles velMax 16.3 energia 113" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    assert.equals(16.3, tom.velocidadMaxima())
+    assert.equals(113, tom.energia())
+  }
+
+  test "jerry cumple años tom lo come velMax 17 y energia 110" {
+    jerry.cumplirAños()
+    tom.comer(jerry)
+    assert.equals(16, tom.velocidadMaxima())
+    assert.equals(110, tom.energia())
+  }
+  
+  test "tom puede cazar un raton que está a 99 metros" {
+    assert.that(tom.puedeCazar(99))
+  }
+
+  test "tom no puede cazar un ratón a 120 metros" {
+    assert.notThat(tom.puedeCazar(120))
+  }
+
+  test "tom caza a nibbles que está a 50 metros y la velocidad máxima es 11 y su energia 60" {
+    tom.cazar(nibbles,50)
+    assert.equals(11,tom.velocidadMaxima())
+    assert.equals(60, tom.energia())
+  }
 }
